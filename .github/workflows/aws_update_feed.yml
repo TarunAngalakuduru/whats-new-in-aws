@@ -36,6 +36,13 @@ jobs:
       - name: Run feed processor
         run: python aws_feed_processor.py
 
+      # NEW: Upload log file
+      - name: Upload logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: aws-feed-logs
+          path: aws_feed_processor.log
+
       - name: Commit and push updated Excel
         run: |
           git config user.name "github-actions"
