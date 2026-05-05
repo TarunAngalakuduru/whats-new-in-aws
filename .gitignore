@@ -1,7 +1,3 @@
-# ─── Project Specific ───────────────────────
-aws_feed_master.xlsx
-aws_feed_processor.log
-
 # ─── Python ─────────────────────────────────
 __pycache__/
 *.py[cod]
