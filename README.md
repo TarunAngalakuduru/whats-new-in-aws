@@ -8,9 +8,15 @@ Automated pipeline that fetches AWS announcements, summarizes them using Amazon 
 
 * Fetches latest AWS announcements from the RSS feed daily via GitHub Actions
 * Processes only new entries (deduplication against master Excel file)
-* Extracts AWS Service and Category using Bedrock Nova Lite
+* Uses Amazon Bedrock Nova Lite to:
+
+  * Generate a short summary of each announcement
+  * Identify the outcome (impact)
+  * Suggest where the feature can be used (use case)
+  * Extract AWS Service and Category
 * Tracks token usage and cost per run
 * Displays everything in an interactive Streamlit dashboard
+
 
 ## Files
 
