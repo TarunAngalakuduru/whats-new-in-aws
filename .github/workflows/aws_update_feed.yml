@@ -3,7 +3,10 @@ name: Update AWS Feed Daily
 on:
   schedule:
     - cron: '30 3 * * *'  # 9:00 AM IST (UTC+5:30)
-  workflow_dispatch:        # Manual trigger from GitHub UI
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   update-feed:
@@ -12,6 +15,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -35,6 +40,10 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
+
           git add aws_feed_master.xlsx
-          git commit -m "Auto-update AWS feed $(TZ='Asia/Kolkata' date +'%Y-%m-%d %H:%M IST')" || echo "No changes to commit"
-          git push
+
+          git diff --cached --quiet && echo "No changes" || (
+            git commit -m "Auto-update AWS feed $(TZ='Asia/Kolkata' date +'%Y-%m-%d %H:%M IST')"
+            git push origin HEAD:master
+          )
