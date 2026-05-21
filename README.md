@@ -59,7 +59,7 @@ streamlit run dashboard.py
 
 ## Automation
 
-GitHub Actions runs the processor daily at **12:00 PM IST (UTC+5:30)**, updates `aws_feed_master.xlsx`, and commits it back to the repo. Streamlit Cloud picks up the change automatically.
+GitHub Actions runs the processor daily between **12:00 PM and 2:00 PM IST (UTC+5:30)**, updates `aws_feed_master.xlsx`, and commits it back to the repo. Streamlit Cloud picks up the change automatically.
 
 ## Tech Stack
 
